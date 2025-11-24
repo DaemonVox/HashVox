@@ -8,7 +8,6 @@ def detect_hash_type(h):
     h = h.strip().lower()
 
     # Very basic pattern/length-based detection.
-    # Add more cases here as needed.
     if re.fullmatch(r"[0-9a-f]{32}", h):
         return "md5"
     elif re.fullmatch(r"[0-9a-f]{40}", h):
@@ -56,7 +55,7 @@ def main():
     hash_value = args.hash
     wordlist = args.wordlist
 
-    # 1) Detect hash type
+    # 1 Detect hash type
     hash_type = detect_hash_type(hash_value)
     if not hash_type:
         print("[!] Could not reliably detect hash type (add more cases to detect_hash_type())")
@@ -64,8 +63,7 @@ def main():
 
     print(f"[*] Detected hash type: {hash_type}")
 
-    # 2) Different cases for each hash type
-    #    (here logic is same: dictionary attack via hashlib, but you can branch per type)
+    # 2 Different cases for each hash type
     if hash_type == "md5":
         print("[*] Using MD5 cracking routine (dictionary attack)")
     elif hash_type == "sha1":
@@ -87,3 +85,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
